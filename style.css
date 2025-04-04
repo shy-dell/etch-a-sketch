@@ -1,0 +1,5 @@
+/* use child combinator bc div must be a direct child */
+#container > div {
+    display: flex;
+
+}
