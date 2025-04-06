@@ -73,17 +73,37 @@ button.addEventListener('click', () => {
             
             bodyElement.removeChild(document.querySelector('.boxSize'));
             calculateBoxCount(squaresRequested);
+            colorOnHover();
         };
 });
 
 // Get random RGB value - we add 1 because otherwise this wouldn't be inclusive of the max
 function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + 1);
-}
+};
 
-const r = getRandomArbitrary(0,255);
-console.log(r);
-const g = getRandomArbitrary(0,255);
-console.log(g);
-const b = getRandomArbitrary(0,255);
-console.log(b);
+// Hover effect to allow sketching - use mouseenter as it does not bubble
+function colorOnHover(colorFlag) {
+    const squares = container.querySelectorAll('.square');
+    squares.forEach(square => {
+        square.addEventListener('mouseenter' , () => {
+            if (window.getComputedStyle(square).backgroundColor === 'rgb(255, 255, 255)') //requires spaces to read as getComputedStyle outputs it that way 
+                {
+                    const r = getRandomArbitrary(0,255);
+                    const g = getRandomArbitrary(0,255);
+                    const b = getRandomArbitrary(0,255);
+
+                    const rgbString = `rgb(${r},${g},${b})`
+                    console.log(rgbString);
+                    square.style.backgroundColor = rgbString;
+                    square.style.opacity = 0.1;
+
+                } else {
+                    let currentOpacity = parseFloat(square.style.opacity) || 0.1;
+                    let newOpacity = Math.min(currentOpacity + 0.1, 1);
+                    square.style.opacity = newOpacity;
+            }
+        });
+    });
+};
+colorOnHover();
