@@ -30,17 +30,9 @@ function createSketch(numberOfSquaresPerRow){
     };
 };
 
-// prompt user for number of rows / columns and promptAgain if outside the acceptable range
-let squaresRequested = prompt("Please input the number of rows and columns you would like, between 1 and 100. Reminder: the Etch-a-Sketch is a square so this will be the same value for both.");
-
-if (squaresRequested > 100 ||
-    squaresRequested <= 0 ||
-    squaresRequested === "" ||
-    squaresRequested === null) {
-        promptAgain()
-    } else {
-        createSketch(squaresRequested)
-    };
+// default the box to 16 x 16
+let squaresRequested = 16;
+createSketch(squaresRequested);
 
 // tell the user how big their table is
 const boxTotal = Number(squaresRequested) * Number(squaresRequested);
@@ -49,3 +41,22 @@ const boxSize = document.createElement('div');
 boxSize.classList.add('boxSize');
 boxSize.textContent = `This Etch-a-Sketch is ${squaresRequested} x ${squaresRequested}. Therefore ${boxTotal} squares.`;
 bodyElement.insertBefore(boxSize,container);
+
+// Create button
+const button = document.createElement('button');
+button.textContent = "Change Box Size";
+button.classList.add = 'changeButton';
+bodyElement.appendChild(button);
+
+// If the button is pressed prompt user for number of rows / columns and promptAgain if outside the acceptable range
+button.addEventListener ('click', () => {
+    squaresRequested = prompt("Please input the number of rows and columns you would like, between 1 and 100. Reminder: the Etch-a-Sketch is a square so this will be the same value for both.");
+    if (squaresRequested > 100 ||
+        squaresRequested <= 0 ||
+        squaresRequested === "" ||
+        squaresRequested === null) {
+            promptAgain()
+        } else {
+            createSketch(squaresRequested)
+        };
+});
