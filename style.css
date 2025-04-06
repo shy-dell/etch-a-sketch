@@ -34,3 +34,12 @@ body {
     text-align: center;
 }
 
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+.changeButton {
+    text-align: center;
+    display: inline-block;
+}

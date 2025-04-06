@@ -42,11 +42,15 @@ boxSize.classList.add('boxSize');
 boxSize.textContent = `This Etch-a-Sketch is ${squaresRequested} x ${squaresRequested}. Therefore ${boxTotal} squares.`;
 bodyElement.insertBefore(boxSize,container);
 
-// Create button
+// Create button and div to host button
+const buttonDiv = document.createElement('div');
+buttonDiv.classList.add('buttonDiv');
+bodyElement.insertBefore(buttonDiv,container);
+
 const button = document.createElement('button');
 button.textContent = "Change Box Size";
-button.classList.add = 'changeButton';
-bodyElement.appendChild(button);
+button.classList.add('changeButton');
+buttonDiv.appendChild(button)
 
 // If the button is pressed prompt user for number of rows / columns and promptAgain if outside the acceptable range
 button.addEventListener ('click', () => {
