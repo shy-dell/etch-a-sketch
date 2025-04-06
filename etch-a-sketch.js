@@ -58,7 +58,7 @@ button.classList.add('changeButton');
 buttonDiv.appendChild(button)
 
 // If the button is pressed prompt user for number of rows / columns and promptAgain if outside the acceptable range
-button.addEventListener ('click', () => {
+button.addEventListener('click', () => {
     squaresRequested = prompt("Please input the number of rows and columns you would like, between 1 and 100. Reminder: the Etch-a-Sketch is a square so this will be the same value for both.");
     if (squaresRequested > 100 ||
         squaresRequested <= 0 ||
@@ -76,3 +76,14 @@ button.addEventListener ('click', () => {
         };
 });
 
+// Get random RGB value - we add 1 because otherwise this wouldn't be inclusive of the max
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + 1);
+}
+
+const r = getRandomArbitrary(0,255);
+console.log(r);
+const g = getRandomArbitrary(0,255);
+console.log(g);
+const b = getRandomArbitrary(0,255);
+console.log(b);
