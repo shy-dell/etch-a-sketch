@@ -1,4 +1,4 @@
-// create divs
+// create container
 const container = document.querySelector('#container');
 
 // create header
@@ -8,15 +8,44 @@ header.classList.add('titleHeader');
 header.textContent = "Etch-a-Sketch";
 bodyElement.insertBefore(header,container);
 
-for (let i=1; i <= 16;i++) {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add(`row${i}`)
-    container.appendChild(newDiv);
-    for (let n = 1; n <=16; n++) {
-        const childContainer = document.querySelector(`.row${i}`);
-        const childDiv = document.createElement('div');
-        childDiv.classList.add('square');
-        childDiv.style.border = '1px solid black';
-        childContainer.appendChild(childDiv);
+// Prep functions to build table
+function promptAgain() {
+    alert('That was outside the acceptable range.')
+    squaresRequested = prompt("Please input the number of rows and columns you would like, between 1 and 100. Reminder: the Etch-a-Sketch is a square so this will be the same value for both.");
+    return squaresRequested;
+};
+
+function createSketch(numberOfSquaresPerRow){
+    for (let i=1; i <= numberOfSquaresPerRow;i++) {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add(`row${i}`)
+        container.appendChild(newDiv);
+        for (let n = 1; n <=numberOfSquaresPerRow; n++) {
+            const childContainer = document.querySelector(`.row${i}`);
+            const childDiv = document.createElement('div');
+            childDiv.classList.add('square');
+            childDiv.style.border = '1px solid black';
+            childContainer.appendChild(childDiv);
+        };
     };
 };
+
+// prompt user for number of rows / columns and promptAgain if outside the acceptable range
+let squaresRequested = prompt("Please input the number of rows and columns you would like, between 1 and 100. Reminder: the Etch-a-Sketch is a square so this will be the same value for both.");
+
+if (squaresRequested > 100 ||
+    squaresRequested <= 0 ||
+    squaresRequested === "" ||
+    squaresRequested === null) {
+        promptAgain()
+    } else {
+        createSketch(squaresRequested)
+    };
+
+// tell the user how big their table is
+const boxTotal = Number(squaresRequested) * Number(squaresRequested);
+
+const boxSize = document.createElement('div');
+boxSize.classList.add('boxSize');
+boxSize.textContent = `This Etch-a-Sketch is ${squaresRequested} x ${squaresRequested}. Therefore ${boxTotal} squares.`;
+bodyElement.insertBefore(boxSize,container);

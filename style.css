@@ -2,6 +2,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: #fefbd8;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #container {
@@ -28,8 +29,8 @@ body {
     width: 6.25%;
 }
 
-.titleHeader {
-    font-family: 'Times New Roman', Times, serif;
+.titleHeader,
+.boxSize {
     text-align: center;
-    padding-bottom: 100px;
 }
+
