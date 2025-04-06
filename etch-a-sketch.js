@@ -35,12 +35,17 @@ let squaresRequested = 16;
 createSketch(squaresRequested);
 
 // tell the user how big their table is
-const boxTotal = Number(squaresRequested) * Number(squaresRequested);
+function calculateBoxCount(squaresRequested) { 
+    let boxTotal = Number(squaresRequested) * Number(squaresRequested);
+    const boxSize = document.createElement('div');
+    boxSize.classList.add('boxSize');
+    bodyElement.insertBefore(boxSize,container);
+    boxSize.textContent = `This Etch-a-Sketch is ${squaresRequested} x ${squaresRequested}. Therefore ${boxTotal} squares.`;
+    
+    return boxSize;
 
-const boxSize = document.createElement('div');
-boxSize.classList.add('boxSize');
-boxSize.textContent = `This Etch-a-Sketch is ${squaresRequested} x ${squaresRequested}. Therefore ${boxTotal} squares.`;
-bodyElement.insertBefore(boxSize,container);
+};
+calculateBoxCount(squaresRequested);
 
 // Create button and div to host button
 const buttonDiv = document.createElement('div');
@@ -61,6 +66,13 @@ button.addEventListener ('click', () => {
         squaresRequested === null) {
             promptAgain()
         } else {
-            createSketch(squaresRequested)
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            createSketch(squaresRequested);
+            
+            bodyElement.removeChild(document.querySelector('.boxSize'));
+            calculateBoxCount(squaresRequested);
         };
 });
+

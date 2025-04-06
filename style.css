@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     justify-self: center;
     justify-content: center;
+    flex: 1 1 auto;
     height: 600px;
     width: 600px;
     margin: 0;
@@ -26,7 +27,8 @@ body {
 
 #container > div > div {
     height: auto;
-    width: 6.25%;
+    display: flex;
+    flex: 1 1 auto;
 }
 
 .titleHeader,
